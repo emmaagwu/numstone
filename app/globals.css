@@ -12,46 +12,54 @@
   --font-sans: var(--font-inter);
 }
 
+/* Dark mode via .dark class on <html> */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* ── Dropdown animation utilities ── */
+/* ── Dropdown / menu animation utilities ── */
 @keyframes fade-in {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
 
-@keyframes zoom-in-95 {
-  from { transform: scale(0.96) translateX(-50%); }
+@keyframes zoom-in-97 {
+  from { transform: scale(0.97) translateX(-50%); }
   to   { transform: scale(1)    translateX(-50%); }
 }
 
-@keyframes slide-in-from-top {
-  from { transform: scale(0.96) translateX(-50%) translateY(-6px); }
+@keyframes slide-in-from-top-1 {
+  from { transform: scale(0.97) translateX(-50%) translateY(-6px); }
   to   { transform: scale(1)    translateX(-50%) translateY(0);    }
 }
 
 .animate-in {
   animation-fill-mode: both;
 }
-.fade-in {
-  animation-name: fade-in;
-}
-.zoom-in-95 {
-  animation-name: zoom-in-95;
-}
-.slide-in-from-top-1 {
-  animation-name: slide-in-from-top;
-}
-.duration-150 {
-  animation-duration: 150ms;
-}
+.fade-in            { animation-name: fade-in; }
+.zoom-in-\[0\.97\]  { animation-name: zoom-in-97; }
+.slide-in-from-top-1 { animation-name: slide-in-from-top-1; }
+.duration-150       { animation-duration: 150ms; }
 
-/* ── Scrollbar ── */
+/* ── Status ping animation (footer) ── */
+@keyframes ping {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+.animate-ping { animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite; }
+
+/* ── Thin scrollbar ── */
 * {
   scrollbar-width: thin;
   scrollbar-color: #e5e7eb transparent;
+}
+.dark * {
+  scrollbar-color: #2a2a2a transparent;
 }

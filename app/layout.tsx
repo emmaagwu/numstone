@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "../components/navbar/Navbar";
+import { Footer } from "../components/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -9,9 +10,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Numstone — Software Agency",
+  title: "Numstone — Nigeria's #1 Software Agency",
   description:
-    "Numstone is a software agency that builds high-performance web apps, mobile apps, and digital products for ambitious companies.",
+    "Numstone builds world-class web apps, mobile apps, SaaS products, and digital solutions for ambitious businesses across Nigeria and beyond.",
 };
 
 export default function RootLayout({
@@ -21,9 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className="min-h-screen bg-white font-sans antialiased">
+      <body className="min-h-screen bg-white font-sans antialiased dark:bg-neutral-950">
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
