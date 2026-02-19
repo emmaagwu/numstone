@@ -79,17 +79,26 @@ function useTheme() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {
-    const stored = localStorage.getItem("theme") as "light" | "dark" | null;
-    const initial = stored ?? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    // Light is always the default — only persist user's explicit choice
+    const stored = localStorage.getItem("numstone-theme") as "light" | "dark" | null;
+    const initial = stored ?? "light";
     setTheme(initial);
-    document.documentElement.classList.toggle("dark", initial === "dark");
+    if (initial === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
   }, []);
 
   const toggle = () => {
     const next = theme === "light" ? "dark" : "light";
     setTheme(next);
-    localStorage.setItem("theme", next);
-    document.documentElement.classList.toggle("dark", next === "dark");
+    localStorage.setItem("numstone-theme", next);
+    if (next === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
   };
 
   return { theme, toggle };
@@ -207,12 +216,16 @@ export function Navbar() {
                       className={cn(
                         "absolute top-full mt-3",
                         wide
-                          ? "left-1/2 -translate-x-1/2"
+                          ? "fixed left-0 right-0 mx-auto px-4 lg:px-10"
                           : "left-1/2 -translate-x-1/2",
-                        "animate-in fade-in zoom-in-[0.97] slide-in-from-top-1 duration-150"
+                        "dropdown-enter"
                       )}
+                      style={wide ? { top: "calc(56px + 12px)" } : undefined}
                     >
-                      <div className="overflow-hidden rounded-[20px] border border-neutral-200 bg-white shadow-xl dark:border-white/15 dark:bg-neutral-950">
+                      <div className={cn(
+                        "overflow-hidden border border-neutral-200 bg-white shadow-xl dark:border-white/10 dark:bg-neutral-950",
+                        wide ? "rounded-[20px]" : "rounded-[20px]"
+                      )}>
                         <Dropdown />
                       </div>
                     </div>
