@@ -181,7 +181,11 @@ export function Navbar() {
               const isOpen = openDropdown === name;
 
               return (
-                <li key={name} className="relative">
+                <li
+                  key={name}
+                  className="relative"
+                  onMouseEnter={() => setOpenDropdown(name)}
+                >
                   {href !== undefined ? (
                     <Link
                       href={href}
@@ -196,7 +200,6 @@ export function Navbar() {
                     </Link>
                   ) : (
                     <button
-                      onMouseEnter={() => setOpenDropdown(name)}
                       onClick={() => setOpenDropdown(isOpen ? null : name)}
                       className={cn(
                         "flex items-center rounded-lg px-4 py-2 text-sm font-medium transition-colors",
@@ -214,13 +217,13 @@ export function Navbar() {
                   {Dropdown && isOpen && (
                     <div
                       className={cn(
-                        "absolute top-full mt-3",
+                        "absolute top-full pt-3", // pt-3 instead of mt-3 covers gap
                         wide
                           ? "fixed left-0 right-0 mx-auto px-4 lg:px-10"
                           : "left-1/2 -translate-x-1/2",
                         "dropdown-enter"
                       )}
-                      style={wide ? { top: "calc(56px + 12px)" } : undefined}
+                      style={wide ? { top: "56px" } : undefined}
                     >
                       <div className={cn(
                         "overflow-hidden border border-neutral-200 bg-white shadow-xl dark:border-white/10 dark:bg-neutral-950",

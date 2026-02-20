@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CTASection } from "../components/CTASection";
+import { ServicesSection } from "../components/ServicesSection";
 
 const stats = [
   { label: "Projects delivered", value: "150+" },
@@ -48,7 +49,7 @@ const products = [
   { name: "CRM & Sales Pipeline", href: "/products/crm" },
 ];
 
-const trustedBy = ["Dangote", "Zenith Bank", "GTBank", "MTN", "Flutterwave", "Paystack"];
+const trustedBy = ["D18-studios", "Herjoymovement", "Kneesupvenues"];
 
 export default function HomePage() {
   return (
@@ -174,41 +175,7 @@ export default function HomePage() {
       </section>
 
       {/* ── SERVICES ────────────────────────────────────────── */}
-      <section className="mx-auto max-w-screen-xl px-4 py-24 lg:px-10">
-        <div className="mb-14">
-          <p className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-neutral-400 dark:text-neutral-500">
-            What we build
-          </p>
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <h2 className="text-3xl font-semibold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
-              Full-stack delivery,
-              <br className="hidden sm:block" /> zero compromise
-            </h2>
-            <Link
-              href="/services"
-              className="group flex items-center gap-1 text-sm font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
-            >
-              All services
-              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} className="transition-transform group-hover:translate-x-0.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </Link>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map(({ emoji, color, border, title, desc }) => (
-            <div
-              key={title}
-              className={`group rounded-2xl border ${border} ${color} p-6 transition-all hover:shadow-md`}
-            >
-              <div className="mb-4 text-2xl">{emoji}</div>
-              <h3 className="mb-2 text-sm font-semibold text-neutral-900 dark:text-white">{title}</h3>
-              <p className="text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">{desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <ServicesSection />
 
       {/* ── PRODUCTS ─────────────────────────────────────────── */}
       <section className="border-t border-neutral-100 bg-neutral-50/80 dark:border-white/10 dark:bg-neutral-900/20">
